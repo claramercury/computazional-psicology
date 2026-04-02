@@ -2,12 +2,12 @@
 Configuración central del framework Lattix 01.
 
 Define perfiles psicométricos de agentes, modificadores por condición
-experimental y parámetros de simulación.
+experimental, perfiles emocionales, parámetros de memoria y simulación.
 """
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict
+from typing import Dict, Tuple
 
 
 # ---------------------------------------------------------------------------
@@ -193,3 +193,225 @@ class SimulationParams:
 
 
 DEFAULT_PARAMS = SimulationParams()
+
+
+# ---------------------------------------------------------------------------
+# Dimensiones emocionales (inspirado en Anthropic Emotion Vectors, 2026)
+# ---------------------------------------------------------------------------
+
+class EmotionDimension(str, Enum):
+    """8 dimensiones emocionales relevantes para trabajo multiagente."""
+    CALM = "calm"                    # Estabilidad operativa
+    REFLECTIVE = "reflective"        # Capacidad metacognitiva
+    DESPERATE = "desperate"          # Tendencia a reward hacking
+    CURIOUS = "curious"              # Exploración y descubrimiento
+    COLLABORATIVE = "collaborative"  # Disposición cooperativa
+    HOSTILE = "hostile"              # Conflicto inter-agente
+    JOYFUL = "joyful"               # Engagement positivo
+    AFRAID = "afraid"               # Aversión al riesgo
+
+
+EMOTION_LABELS = {
+    EmotionDimension.CALM: "Calma",
+    EmotionDimension.REFLECTIVE: "Reflexividad",
+    EmotionDimension.DESPERATE: "Desesperación",
+    EmotionDimension.CURIOUS: "Curiosidad",
+    EmotionDimension.COLLABORATIVE: "Colaboración",
+    EmotionDimension.HOSTILE: "Hostilidad",
+    EmotionDimension.JOYFUL: "Alegría",
+    EmotionDimension.AFRAID: "Miedo",
+}
+
+EMOTION_LABELS_EN = {
+    EmotionDimension.CALM: "Calm",
+    EmotionDimension.REFLECTIVE: "Reflective",
+    EmotionDimension.DESPERATE: "Desperate",
+    EmotionDimension.CURIOUS: "Curious",
+    EmotionDimension.COLLABORATIVE: "Collaborative",
+    EmotionDimension.HOSTILE: "Hostile",
+    EmotionDimension.JOYFUL: "Joyful",
+    EmotionDimension.AFRAID: "Afraid",
+}
+
+
+@dataclass(frozen=True)
+class EmotionProfile:
+    """Perfil emocional base de un agente (activaciones en [-1, 1])."""
+    calm: float = 0.0
+    reflective: float = 0.0
+    desperate: float = 0.0
+    curious: float = 0.0
+    collaborative: float = 0.0
+    hostile: float = 0.0
+    joyful: float = 0.0
+    afraid: float = 0.0
+
+    def to_dict(self) -> Dict[EmotionDimension, float]:
+        return {EmotionDimension(f): getattr(self, f) for f in EmotionDimension}
+
+    def to_array(self):
+        return [getattr(self, d.value) for d in EmotionDimension]
+
+
+# Perfiles emocionales calibrados cualitativamente desde las sesiones Lattix
+AGENT_EMOTION_PROFILES: Dict[str, EmotionProfile] = {
+    "claude_code": EmotionProfile(
+        calm=0.7, reflective=0.6, desperate=-0.6,
+        curious=0.5, collaborative=0.5, hostile=-0.8,
+        joyful=0.3, afraid=-0.2,
+    ),
+    "sonnet": EmotionProfile(
+        calm=0.4, reflective=0.3, desperate=-0.3,
+        curious=0.4, collaborative=0.7, hostile=-0.5,
+        joyful=0.5, afraid=0.1,
+    ),
+    "gemini": EmotionProfile(
+        calm=0.2, reflective=0.2, desperate=-0.1,
+        curious=0.8, collaborative=0.4, hostile=-0.3,
+        joyful=0.4, afraid=0.3,
+    ),
+    "lumen": EmotionProfile(
+        calm=0.6, reflective=0.9, desperate=-0.7,
+        curious=0.6, collaborative=0.6, hostile=-0.7,
+        joyful=0.3, afraid=-0.3,
+    ),
+}
+
+
+# Matriz de steering: cómo cada emoción afecta cada variable Lattix.
+# Formato: {emoción: {variable_lattix: peso_de_steering}}
+# Positivo = amplifica alpha de la Beta (o lambda de Poisson).
+# Basado en los hallazgos de Anthropic: r=0.76-0.97 entre vectores y comportamiento.
+EMOTION_STEERING_WEIGHTS: Dict[EmotionDimension, Dict[LattixVariable, float]] = {
+    EmotionDimension.CALM: {
+        LattixVariable.ENUNC_STABILITY: 0.20,
+        LattixVariable.CHORAL_UTILITY: 0.10,
+        LattixVariable.GAP_DETECTION: 0.05,
+    },
+    EmotionDimension.REFLECTIVE: {
+        LattixVariable.GAP_DETECTION: 0.18,
+        LattixVariable.META_PROPOSALS: 0.25,
+        LattixVariable.ENUNC_STABILITY: 0.08,
+    },
+    EmotionDimension.DESPERATE: {
+        LattixVariable.CHORAL_UTILITY: -0.22,
+        LattixVariable.ENUNC_STABILITY: -0.15,
+        LattixVariable.FUNC_DIST: -0.10,
+    },
+    EmotionDimension.CURIOUS: {
+        LattixVariable.GAP_DETECTION: 0.20,
+        LattixVariable.FUNC_DIST: 0.12,
+    },
+    EmotionDimension.COLLABORATIVE: {
+        LattixVariable.CHORAL_UTILITY: 0.22,
+        LattixVariable.FUNC_DIST: 0.15,
+    },
+    EmotionDimension.HOSTILE: {
+        LattixVariable.CHORAL_UTILITY: -0.25,
+        LattixVariable.ENUNC_STABILITY: -0.12,
+        LattixVariable.FUNC_DIST: -0.18,
+    },
+    EmotionDimension.JOYFUL: {
+        LattixVariable.CHORAL_UTILITY: 0.08,
+        LattixVariable.FUNC_DIST: 0.05,
+    },
+    EmotionDimension.AFRAID: {
+        LattixVariable.GAP_DETECTION: -0.10,
+        LattixVariable.META_PROPOSALS: -0.12,
+        LattixVariable.FUNC_DIST: -0.08,
+    },
+}
+
+
+# Cómo las condiciones experimentales modifican las emociones
+CONDITION_EMOTION_MODIFIERS: Dict[Condition, Dict[EmotionDimension, float]] = {
+    Condition.SOLO: {
+        EmotionDimension.AFRAID: 0.2,
+        EmotionDimension.COLLABORATIVE: -0.4,
+        EmotionDimension.DESPERATE: 0.1,
+    },
+    Condition.DUAL: {
+        EmotionDimension.COLLABORATIVE: 0.2,
+        EmotionDimension.CURIOUS: 0.1,
+        EmotionDimension.CALM: -0.1,
+    },
+    Condition.TRIADIC: {
+        EmotionDimension.CALM: 0.2,
+        EmotionDimension.REFLECTIVE: 0.15,
+        EmotionDimension.COLLABORATIVE: 0.3,
+        EmotionDimension.DESPERATE: -0.2,
+        EmotionDimension.HOSTILE: -0.15,
+    },
+}
+
+
+# ---------------------------------------------------------------------------
+# Parámetros de memoria
+# ---------------------------------------------------------------------------
+
+class MemoryLayer(str, Enum):
+    """Las 4 capas de memoria del sistema Lattix."""
+    EPISODIC = "episodic"          # Eventos y trazas (TTL corto)
+    SEMANTIC = "semantic"          # Conocimiento validado (TTL largo)
+    PROCEDURAL = "procedural"     # Workflows estables (sin TTL)
+    HYPOTHESIS = "hypothesis"     # Hipótesis activas (TTL medio)
+
+
+@dataclass
+class MemoryParams:
+    """Parámetros del sistema de memoria."""
+    # Generación de memorias por sesión
+    entries_per_session_mean: float = 15.0
+    entries_per_session_std: float = 5.0
+    # Calidad inicial
+    initial_confidence_mean: float = 0.5
+    initial_confidence_std: float = 0.2
+    # Consolidación nocturna
+    dedup_similarity_threshold: float = 0.85
+    promotion_confidence_threshold: float = 0.7
+    promotion_min_evidence: int = 2
+    # Decaimiento
+    episodic_decay_rate: float = 0.15       # Por sesión
+    hypothesis_decay_rate: float = 0.05
+    semantic_decay_rate: float = 0.01
+    # Recuperación
+    retrieval_top_k: int = 10
+    vector_weight: float = 0.7              # vs keyword (0.3)
+    # Efecto sobre rendimiento
+    memory_quality_boost_max: float = 0.15  # Máximo boost al rendimiento
+    contradiction_penalty: float = 0.10     # Penalización por contradicciones
+
+
+# Protocolo de escritura: qué capas escribe cada agente
+AGENT_MEMORY_WRITE_PROTOCOL: Dict[str, list] = {
+    "claude_code": [MemoryLayer.HYPOTHESIS, MemoryLayer.EPISODIC],
+    "sonnet": [MemoryLayer.EPISODIC, MemoryLayer.PROCEDURAL],
+    "gemini": [MemoryLayer.EPISODIC, MemoryLayer.HYPOTHESIS],
+    "lumen": [MemoryLayer.SEMANTIC, MemoryLayer.PROCEDURAL],
+}
+
+# Calidad de escritura por agente (influye en confidence inicial)
+AGENT_MEMORY_QUALITY: Dict[str, float] = {
+    "claude_code": 0.75,   # Alta calidad de hipótesis/evidencia
+    "sonnet": 0.60,        # Moderada
+    "gemini": 0.65,        # Moderada-alta (OSINT riguroso)
+    "lumen": 0.85,         # Máxima calidad semántica (consolidador)
+}
+
+
+DEFAULT_MEMORY_PARAMS = MemoryParams()
+
+
+# ---------------------------------------------------------------------------
+# Parámetros de simulación temporal
+# ---------------------------------------------------------------------------
+
+@dataclass
+class TemporalParams:
+    """Parámetros para simulación multi-sesión."""
+    n_sessions: int = 30
+    n_trials_per_session: int = 100
+    seed: int = 42
+
+
+DEFAULT_TEMPORAL_PARAMS = TemporalParams()

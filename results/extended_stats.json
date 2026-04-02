@@ -1,0 +1,487 @@
+{
+  "trends": [
+    {
+      "variable": "func_dist",
+      "temporal_condition": "baseline_no_memory",
+      "slope": 3.387070111906018e-05,
+      "r_squared": 0.0017939920477578971,
+      "p_value": 0.8241327316950974,
+      "improvement_pct": 0.15856064551432136
+    },
+    {
+      "variable": "enunc_stability",
+      "temporal_condition": "baseline_no_memory",
+      "slope": 4.9559428702599005e-05,
+      "r_squared": 0.004053213803895488,
+      "p_value": 0.7382067687212008,
+      "improvement_pct": 0.22623630708754755
+    },
+    {
+      "variable": "gap_detection",
+      "temporal_condition": "baseline_no_memory",
+      "slope": -0.00022917875512969507,
+      "r_squared": 0.07367672083044084,
+      "p_value": 0.1467971097790812,
+      "improvement_pct": -0.9311802632280695
+    },
+    {
+      "variable": "meta_proposals",
+      "temporal_condition": "baseline_no_memory",
+      "slope": -0.002327586206896551,
+      "r_squared": 0.032902356480777085,
+      "p_value": 0.33741369110893443,
+      "improvement_pct": -1.0701545778834705
+    },
+    {
+      "variable": "choral_utility",
+      "temporal_condition": "baseline_no_memory",
+      "slope": 0.0001887317477320478,
+      "r_squared": 0.07773460417914152,
+      "p_value": 0.13570458959316695,
+      "improvement_pct": 0.8251812833080111
+    },
+    {
+      "variable": "func_dist",
+      "temporal_condition": "full_lattix",
+      "slope": 0.0009346338746492927,
+      "r_squared": 0.37485006948527116,
+      "p_value": 0.00032339214419940614,
+      "improvement_pct": 3.0345227042645018
+    },
+    {
+      "variable": "enunc_stability",
+      "temporal_condition": "full_lattix",
+      "slope": 0.0015413282491125674,
+      "r_squared": 0.6169297207536383,
+      "p_value": 2.733203693078744e-07,
+      "improvement_pct": 5.095361614264492
+    },
+    {
+      "variable": "gap_detection",
+      "temporal_condition": "full_lattix",
+      "slope": 0.0007375661116789823,
+      "r_squared": 0.4010431711681986,
+      "p_value": 0.00017253551156706128,
+      "improvement_pct": 2.319738075524051
+    },
+    {
+      "variable": "meta_proposals",
+      "temporal_condition": "full_lattix",
+      "slope": 0.009451306339405741,
+      "r_squared": 0.1398334239733602,
+      "p_value": 0.041784006894896315,
+      "improvement_pct": 3.336380190458298
+    },
+    {
+      "variable": "choral_utility",
+      "temporal_condition": "full_lattix",
+      "slope": 0.0006502810014895697,
+      "r_squared": 0.4278257156091862,
+      "p_value": 8.842543138113079e-05,
+      "improvement_pct": 1.9492914035679765
+    },
+    {
+      "variable": "func_dist",
+      "temporal_condition": "memory_no_consolidation",
+      "slope": 0.0005532589550235714,
+      "r_squared": 0.20644166435424935,
+      "p_value": 0.011658670896327281,
+      "improvement_pct": 2.3891548984272264
+    },
+    {
+      "variable": "enunc_stability",
+      "temporal_condition": "memory_no_consolidation",
+      "slope": 0.00043223853683893083,
+      "r_squared": 0.1527802439191613,
+      "p_value": 0.03270292667680087,
+      "improvement_pct": 1.8065781928889801
+    },
+    {
+      "variable": "gap_detection",
+      "temporal_condition": "memory_no_consolidation",
+      "slope": 0.0006033243428176702,
+      "r_squared": 0.2932180385234139,
+      "p_value": 0.0019995030703538813,
+      "improvement_pct": 2.2697703209476385
+    },
+    {
+      "variable": "meta_proposals",
+      "temporal_condition": "memory_no_consolidation",
+      "slope": 0.002046318034884903,
+      "r_squared": 0.014178441033338913,
+      "p_value": 0.530846417307556,
+      "improvement_pct": 0.8641092742966148
+    },
+    {
+      "variable": "choral_utility",
+      "temporal_condition": "memory_no_consolidation",
+      "slope": 0.0005061895486046888,
+      "r_squared": 0.17113395124856356,
+      "p_value": 0.023060017048857444,
+      "improvement_pct": 2.031295434558955
+    }
+  ],
+  "effect_sizes": [
+    {
+      "variable": "func_dist",
+      "temporal_condition": "baseline_no_memory",
+      "mean_first": 0.6153008824984806,
+      "mean_last": 0.61889099505236,
+      "cohens_d": 0.029401931439185857,
+      "improvement_pct": 0.5834726807641603
+    },
+    {
+      "variable": "enunc_stability",
+      "temporal_condition": "baseline_no_memory",
+      "mean_first": 0.6351509672078791,
+      "mean_last": 0.640267984855144,
+      "cohens_d": 0.038029838816305894,
+      "improvement_pct": 0.8056380154405333
+    },
+    {
+      "variable": "gap_detection",
+      "temporal_condition": "baseline_no_memory",
+      "mean_first": 0.7125964806037502,
+      "mean_last": 0.7071358594817678,
+      "cohens_d": -0.048491216051215626,
+      "improvement_pct": -0.7662991988615899
+    },
+    {
+      "variable": "meta_proposals",
+      "temporal_condition": "baseline_no_memory",
+      "mean_first": 6.33,
+      "mean_last": 6.266875,
+      "cohens_d": -0.0245497363177533,
+      "improvement_pct": -0.9972353870458186
+    },
+    {
+      "variable": "choral_utility",
+      "temporal_condition": "baseline_no_memory",
+      "mean_first": 0.6603328032577217,
+      "mean_last": 0.6646000275756748,
+      "cohens_d": 0.03823276110804178,
+      "improvement_pct": 0.6462232826994155
+    },
+    {
+      "variable": "func_dist",
+      "temporal_condition": "memory_no_consolidation",
+      "mean_first": 0.669155501049268,
+      "mean_last": 0.6822366815541465,
+      "cohens_d": 0.09909071247931918,
+      "improvement_pct": 1.9548790205515125
+    },
+    {
+      "variable": "enunc_stability",
+      "temporal_condition": "memory_no_consolidation",
+      "mean_first": 0.69022081786267,
+      "mean_last": 0.7043722026473683,
+      "cohens_d": 0.09618778962658144,
+      "improvement_pct": 2.0502691918970757
+    },
+    {
+      "variable": "gap_detection",
+      "temporal_condition": "memory_no_consolidation",
+      "mean_first": 0.7676092807399844,
+      "mean_last": 0.7837957954308036,
+      "cohens_d": 0.13149468303670916,
+      "improvement_pct": 2.1086918953370692
+    },
+    {
+      "variable": "meta_proposals",
+      "temporal_condition": "memory_no_consolidation",
+      "mean_first": 6.921476123243898,
+      "mean_last": 6.963315992702953,
+      "cohens_d": 0.014607407015227168,
+      "improvement_pct": 0.6044934449538523
+    },
+    {
+      "variable": "choral_utility",
+      "temporal_condition": "memory_no_consolidation",
+      "mean_first": 0.7182617452240571,
+      "mean_last": 0.7348443063308531,
+      "cohens_d": 0.13513076046700764,
+      "improvement_pct": 2.308707266822792
+    },
+    {
+      "variable": "func_dist",
+      "temporal_condition": "full_lattix",
+      "mean_first": 0.8860292408523187,
+      "mean_last": 0.9132304379865136,
+      "cohens_d": 0.20402965941557905,
+      "improvement_pct": 3.0700112231091388
+    },
+    {
+      "variable": "enunc_stability",
+      "temporal_condition": "full_lattix",
+      "mean_first": 0.8701688539466906,
+      "mean_last": 0.911763541098131,
+      "cohens_d": 0.2788310548210668,
+      "improvement_pct": 4.780070783134298
+    },
+    {
+      "variable": "gap_detection",
+      "temporal_condition": "full_lattix",
+      "mean_first": 0.919033417603751,
+      "mean_last": 0.9394434231735701,
+      "cohens_d": 0.1925810930492014,
+      "improvement_pct": 2.220812124877382
+    },
+    {
+      "variable": "meta_proposals",
+      "temporal_condition": "full_lattix",
+      "mean_first": 8.189762229309988,
+      "mean_last": 8.351844682842833,
+      "cohens_d": 0.04149939448822095,
+      "improvement_pct": 1.9790861931592467
+    },
+    {
+      "variable": "choral_utility",
+      "temporal_condition": "full_lattix",
+      "mean_first": 0.9621908336033658,
+      "mean_last": 0.9815426327919919,
+      "cohens_d": 0.2641992149950173,
+      "improvement_pct": 2.011222567580951
+    }
+  ],
+  "condition_anova": {
+    "func_dist": {
+      "f_statistic": 2927.0634989524096,
+      "p_value": 0.0,
+      "eta_squared": 0.4939721765651301,
+      "means": {
+        "baseline_no_memory": 0.61889099505236,
+        "full_lattix": 0.9132304379865136,
+        "memory_no_consolidation": 0.6822366815541465
+      },
+      "significant": "True"
+    },
+    "enunc_stability": {
+      "f_statistic": 2056.9394983870184,
+      "p_value": 0.0,
+      "eta_squared": 0.4068764939315962,
+      "means": {
+        "baseline_no_memory": 0.640267984855144,
+        "full_lattix": 0.911763541098131,
+        "memory_no_consolidation": 0.7043722026473683
+      },
+      "significant": "True"
+    },
+    "gap_detection": {
+      "f_statistic": 2201.7122988662736,
+      "p_value": 0.0,
+      "eta_squared": 0.4233889257456439,
+      "means": {
+        "baseline_no_memory": 0.7071358594817678,
+        "full_lattix": 0.9394434231735701,
+        "memory_no_consolidation": 0.7837957954308036
+      },
+      "significant": "True"
+    },
+    "meta_proposals": {
+      "f_statistic": 226.62199542195546,
+      "p_value": 1.3218468987056956e-95,
+      "eta_squared": 0.07026772808707518,
+      "means": {
+        "baseline_no_memory": 6.266875,
+        "full_lattix": 8.351844682842833,
+        "memory_no_consolidation": 6.963315992702953
+      },
+      "significant": "True"
+    },
+    "choral_utility": {
+      "f_statistic": 5309.491255055651,
+      "p_value": 0.0,
+      "eta_squared": 0.6390824318483345,
+      "means": {
+        "baseline_no_memory": 0.6646000275756748,
+        "full_lattix": 0.9815426327919919,
+        "memory_no_consolidation": 0.7348443063308531
+      },
+      "significant": "True"
+    }
+  },
+  "emotion_correlation": {
+    "calm": {
+      "func_dist": {
+        "r": 0.8334905363961906,
+        "p": 1.080117766923142e-08
+      },
+      "enunc_stability": {
+        "r": 0.8999894634431715,
+        "p": 1.3184613933340448e-11
+      },
+      "gap_detection": {
+        "r": 0.79593549448972,
+        "p": 1.453423674383341e-07
+      },
+      "meta_proposals": {
+        "r": 0.5115360651549496,
+        "p": 0.0038617712939687937
+      },
+      "choral_utility": {
+        "r": 0.8525471824886993,
+        "p": 2.2304261626807993e-09
+      }
+    },
+    "reflective": {
+      "func_dist": {
+        "r": -0.19927136726109998,
+        "p": 0.29110046701651054
+      },
+      "enunc_stability": {
+        "r": -0.027837503397557042,
+        "p": 0.8839043877374388
+      },
+      "gap_detection": {
+        "r": -0.01682972217800422,
+        "p": 0.9296625865952295
+      },
+      "meta_proposals": {
+        "r": 0.15832098044749715,
+        "p": 0.40337898618563794
+      },
+      "choral_utility": {
+        "r": -0.13367957363031147,
+        "p": 0.4812759142362444
+      }
+    },
+    "desperate": {
+      "func_dist": {
+        "r": -0.8103902596305748,
+        "p": 5.719622005523752e-08
+      },
+      "enunc_stability": {
+        "r": -0.8786756589308682,
+        "p": 1.7205678068493137e-10
+      },
+      "gap_detection": {
+        "r": -0.720282550733535,
+        "p": 7.192449859267325e-06
+      },
+      "meta_proposals": {
+        "r": -0.5273787546220675,
+        "p": 0.002746943839075001
+      },
+      "choral_utility": {
+        "r": -0.8597809388963941,
+        "p": 1.155808026219678e-09
+      }
+    },
+    "curious": {
+      "func_dist": {
+        "r": 0.08245631573745729,
+        "p": 0.6648838059524805
+      },
+      "enunc_stability": {
+        "r": -0.01217989750507657,
+        "p": 0.9490661179856562
+      },
+      "gap_detection": {
+        "r": 0.11156323490845542,
+        "p": 0.5572511525819739
+      },
+      "meta_proposals": {
+        "r": 0.07317511633210685,
+        "p": 0.7007694325065413
+      },
+      "choral_utility": {
+        "r": 0.020951814599519957,
+        "p": 0.9124939056116768
+      }
+    },
+    "collaborative": {
+      "func_dist": {
+        "r": 0.22882240461330508,
+        "p": 0.2238806052566538
+      },
+      "enunc_stability": {
+        "r": -0.0684693846827589,
+        "p": 0.7192140932253265
+      },
+      "gap_detection": {
+        "r": -0.06270843879591953,
+        "p": 0.742006059827603
+      },
+      "meta_proposals": {
+        "r": -0.24186503531374187,
+        "p": 0.1978583529088065
+      },
+      "choral_utility": {
+        "r": 0.10258317024624458,
+        "p": 0.5895950666956001
+      }
+    },
+    "hostile": {
+      "func_dist": {
+        "r": -0.2222628663247299,
+        "p": 0.23780443962222378
+      },
+      "enunc_stability": {
+        "r": -0.13038385589362397,
+        "p": 0.49224830220118443
+      },
+      "gap_detection": {
+        "r": -0.2913439632127169,
+        "p": 0.11827458811641843
+      },
+      "meta_proposals": {
+        "r": -0.11171206554249526,
+        "p": 0.5567220636364998
+      },
+      "choral_utility": {
+        "r": -0.24376748300345744,
+        "p": 0.19424539764386925
+      }
+    },
+    "joyful": {
+      "func_dist": {
+        "r": 0.02515184857447731,
+        "p": 0.8950402677899971
+      },
+      "enunc_stability": {
+        "r": 0.021487398035949196,
+        "p": 0.9102658473365458
+      },
+      "gap_detection": {
+        "r": -0.10639901354655595,
+        "p": 0.5757515836344165
+      },
+      "meta_proposals": {
+        "r": 0.27468891618172075,
+        "p": 0.14182405565962825
+      },
+      "choral_utility": {
+        "r": 0.010483192222144125,
+        "p": 0.9561540956380974
+      }
+    },
+    "afraid": {
+      "func_dist": {
+        "r": 0.0664520224073857,
+        "p": 0.7271696750616865
+      },
+      "enunc_stability": {
+        "r": 0.017191290302999564,
+        "p": 0.9281552909348847
+      },
+      "gap_detection": {
+        "r": -0.11715572192424757,
+        "p": 0.5375308595949402
+      },
+      "meta_proposals": {
+        "r": -0.004202953265447306,
+        "p": 0.982414140928809
+      },
+      "choral_utility": {
+        "r": 0.18228782984689781,
+        "p": 0.3349872708495221
+      }
+    }
+  },
+  "simulation_params": {
+    "n_sessions": 30,
+    "n_trials_per_session": 100,
+    "seed": 42,
+    "experimental_condition": "triadic"
+  }
+}

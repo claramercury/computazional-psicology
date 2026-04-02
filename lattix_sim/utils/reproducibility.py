@@ -8,7 +8,7 @@ from pathlib import Path
 from datetime import datetime
 
 
-def save_results(results: dict, output_dir: str = "results") -> Path:
+def save_results(results: dict, output_dir: str = "results", filename: str = "summary_stats.json") -> Path:
     """Serializa resultados numéricos a JSON."""
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -31,7 +31,7 @@ def save_results(results: dict, output_dir: str = "results") -> Path:
 
     serializable = convert(results)
 
-    filepath = output_path / "summary_stats.json"
+    filepath = output_path / filename
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(serializable, f, indent=2, ensure_ascii=False, default=str)
 
